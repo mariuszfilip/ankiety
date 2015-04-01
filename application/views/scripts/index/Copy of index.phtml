@@ -1,0 +1,333 @@
+<script type="text/javascript" src="<?php echo $this->syspath; ?>/js/plugins/charts/excanvas.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->syspath; ?>/js/plugins/charts/jquery.flot.js"></script>
+<script type="text/javascript" src="<?php echo $this->syspath; ?>/js/plugins/charts/jquery.flot.orderBars.js"></script>
+<script type="text/javascript" src="<?php echo $this->syspath; ?>/js/plugins/charts/jquery.flot.pie.js"></script>
+<script type="text/javascript" src="<?php echo $this->syspath; ?>/js/plugins/charts/jquery.flot.resize.js"></script>
+<script type="text/javascript" src="<?php echo $this->syspath; ?>/js/plugins/charts/jquery.sparkline.min.js"></script>
+<script type="text/javascript">
+$(function () {
+    var options = {
+        lines: { show: true },
+        points: { show: true },
+        grid: { hoverable: true, clickable: true },
+        xaxis: {mode:"time",timeformat:"%y-%m-%d"}
+    };
+    var data = [];
+    var placeholder = $(".chart");
+    
+    $.plot(placeholder, data, options);
+
+    
+    // fetch one series, adding to what we got
+    var alreadyFetched = {};
+    var button = $(this);
+    
+    // find the URL in the link right next to us 
+    var dataurl = button.siblings('a').attr('href');
+
+    // then fetch the data with jQuery
+    function onDataReceived(series) {
+        // extract the first coordinate pair so you can see that
+        // data is now an ordinary Javascript object
+         data=[];
+        $.plot(placeholder, data, options);
+        var firstcoordinate = '(' + series.data[0][0] + ', ' + series.data[0][1] + ')';
+
+        button.siblings('span').text('Fetched ' + series.label + ', first point: ' + firstcoordinate);
+
+        // let's add it to our current data
+        if (!alreadyFetched[series.label]) {
+            alreadyFetched[series.label] = true;
+        }
+        data.push(series);
+        // and plot all we got
+        $.plot(placeholder, data, options);
+     }
+    
+    $.ajax({
+        url: '<?php echo $this->syspath; ?>/subscriber/developmentsubscriber',
+        method: 'GET',
+        dataType: 'json',
+        success: onDataReceived
+    });
+
+    $('#time').change(function() {
+    	 dataString = $("#time_form").serialize();
+    	   $.ajax({
+    	        url: '<?php echo $this->syspath; ?>/subscriber/developmentsubscriber',
+    	        data: dataString,
+    	        dataType: 'json',
+    	        type: "POST",
+    	        async:true,
+    	        success: onDataReceived
+    	    });
+    	});
+    function showTooltip(x, y, contents) {
+        $('<div id="tooltip" class="tooltip">' + contents + '</div>').css( {
+            position: 'absolute',
+            display: 'none',
+            top: y + 5,
+            left: x + 5,
+            border: '1px solid #000',
+            padding: '2px',
+			'z-index': '9999',
+            'background-color': '#202020',
+			'color': '#fff',
+			'font-size': '11px',
+            opacity: 0.8
+        }).appendTo("body").fadeIn(200);
+    }
+
+    var previousPoint = null;
+    $("#placeholder").bind("plothover", function (event, pos, item) {
+        $("#x").text(pos.x.toFixed(2));
+        $("#y").text(pos.y.toFixed(2));
+        if ($("#placeholder").length > 0) {
+            
+            if (item) {
+                
+                if (previousPoint != item.dataIndex) {
+                    previousPoint = item.dataIndex;
+                    
+                    $("#tooltip").remove();
+                    var x = item.datapoint[0].toFixed(2),
+                        y = item.datapoint[1].toFixed(2);
+                    
+                    showTooltip(item.pageX, item.pageY,y);
+                }
+            }
+            else {
+                $("#tooltip").remove();
+                previousPoint = null;            
+            }
+        }
+    });
+
+    $("#placeholder").bind("plotclick", function (event, pos, item) {
+        if (item) {
+            $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
+            plot.highlight(item.series, item.datapoint);
+        }
+    });
+  
+});
+</script>
+
+<?php if($this->dashboard): 
+if($this->dashboard['type'] == 1):
+    $class = 'nNote nWarning hideit';
+elseif($this->dashboard['type'] == 2):
+    $class = 'nNote nInformation hideit';
+endif;
+?>
+
+<div class="<?php echo $class; ?>">
+            <p><strong><?php echo $this->dashboard['name']; ?>: </strong><?php echo $this->dashboard['message']; ?><!-- <a href="ui_elements.html" title="">Interface elements page</a>--></p>
+</div>
+<div id="tooltip"></div>
+<br/>
+<?php endif; ?>
+
+<?php if(isset($this->acl)): ?>
+
+<div class="nNote nWarning hideit">
+            <p><strong>Uwaga: </strong>Nie masz uprawień do wykonania ostatniej operacji.</p>
+</div>
+<br/>
+<?php endif; ?>
+
+<?php if($this->subscriberlist): ?>
+<div class="widget">
+<div class="title"><img class="titleIcon" alt="" src="images/icons/dark/stats.png">
+<h6>Lista ostatnio dodanych odbiorców</h6>
+<div class="topIcons">
+		<a class="toggleWidget tipS" href="#" original-title="Show/Hide Content"><img alt="" src="images/icons/toggleTop.png"></a>
+</div>
+</div>
+<table width="100%" cellspacing="0" cellpadding="0" class="sTable">
+	<thead>
+		<tr>
+			<td>Data dodania</td>
+			<td>Email</td>
+			<td>Imię i Nazwisko</td>
+			<td>Lista subskrypcyjna</td>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($this->subscriberlist as $key => $value): ?>
+		<tr>
+			<td><?php echo $value['date_save']; ?></td>
+			<td><?php echo $value['email']; ?></td>
+			<td><?php echo $value['first_name'].' '.$value['last_name']; ?></td>
+			<td><?php echo $value['name']; ?></td>
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+</div>
+<?php endif; ?>
+
+
+<div class="widget chartWrapper">
+    <div class="title">
+    <img src="images/icons/dark/users.png" alt="" class="titleIcon" />
+    <h6>Rozwój subskrybentów</h6>
+    <div class="leftIcons">
+    	<form id="time_form">
+         <select name="time" id="time">
+            <option value='7'>Ostatnie 7 dni</option>
+            <option value='14'>Ostatnie 14 dni</option>
+            <option value='31'>Ostatni miesiąc</option>
+         </select>
+     	</form>
+     </div>
+     <div class="topIcons">
+		<a class="toggleWidget tipS" href="#" original-title="Show/Hide Content"><img alt="" src="images/icons/toggleTop.png"></a>
+	 </div>
+     </div>
+     <div class="body">
+        <div class="chart" id="placeholder"></div>
+     </div>
+</div>
+
+
+<?php if($this->campaign): ?>
+<script type="text/javascript">
+$(function () {
+    var options = {
+    		 grid: { hoverable: true, clickable: true },
+    		 bars: {
+                show: true, 
+                barWidth: 0.2
+    		},
+    		xaxis: {ticks: [[0,'Kliknięcia'], [1,'Otwarcia'],[2,'Wysłane'],[3,'Ilość odbiorców']]},
+    };
+    var data = [];
+    var placeholder = $(".bars");
+    
+    $.plot(placeholder, data, options);
+
+    
+    // fetch one series, adding to what we got
+    var alreadyFetched = {};
+    var button = $(this);
+    
+    // find the URL in the link right next to us 
+    var dataurl = button.siblings('a').attr('href');
+
+    // then fetch the data with jQuery
+    function onDataReceived(series) {
+        // extract the first coordinate pair so you can see that
+        // data is now an ordinary Javascript object
+        data=[];
+        $.plot(placeholder, data, options);
+        var firstcoordinate = '(0,0)';
+
+       // button.siblings('span').text('Fetched ' + series.label + ', first point: ' + firstcoordinate);
+
+        // let's add it to our current data
+
+        if (!alreadyFetched[series.label]) {
+            alreadyFetched[series.label] = true;
+        }
+        
+        data.push(series.data_open);
+        data.push(series.data_send);
+        data.push(series.data_click);
+        data.push(series.data_count);
+        $.plot(placeholder, data, options);
+
+     }
+    
+    $.ajax({
+        url: '<?php echo $this->syspath; ?>/campaign/efectivecampaign',
+        type: "POST",
+        data: {id_campaign:<?php echo $this->campaign[0]['id']; ?>},
+        dataType: 'json',
+        success: onDataReceived
+    });
+
+    $('#campaign_list').change(function() {
+    	 dataString = $("#campaign_form").serialize();
+    	   $.ajax({
+    	        url: '<?php echo $this->syspath; ?>/campaign/efectivecampaign',
+    	        data: dataString,
+    	        dataType: 'json',
+    	        type: "POST",
+    	        async:true,
+    	        success: onDataReceived
+    	    });
+    	});
+    //tooltip function
+    function showTooltip(x, y, contents, areAbsoluteXY) {
+        var rootElt = 'body';
+	
+        $('<div id="tooltip2" class="tooltip">' + contents + '</div>').css( {
+            position: 'absolute',
+            display: 'none',
+            top: y - 35,
+            left: x - 5,
+            border: '1px solid #000',
+            padding: '1px 5px',
+			'z-index': '9999',
+            'background-color': '#202020',
+			'color': '#fff',
+			'font-size': '11px',
+            opacity: 0.8
+        }).prependTo(rootElt).show();
+    }
+                
+
+ 
+//add tooltip event
+$("#placeholder1").bind("plothover", function (event, pos, item) {
+    if (item) {
+        if (previousPoint != item.datapoint) {
+            previousPoint = item.datapoint;
+ 
+            //delete de prĐÂŠcĐÂŠdente tooltip
+            $('.tooltip').remove();
+ 
+            var x = item.datapoint[0];
+ 
+            //All the bars concerning a same x value must display a tooltip with this value and not the shifted value
+            if(item.series.bars.order){
+                for(var i=0; i < item.series.data.length; i++){
+                    if(item.series.data[i][3] == item.datapoint[0])
+                        x = item.series.data[i][0];
+                }
+            }
+ 
+            var y = item.datapoint[1];
+ 
+            showTooltip(item.pageX+5, item.pageY+5,y);
+ 
+        }
+    }
+    else {
+        $('.tooltip').remove();
+        previousPoint = null;
+    }
+ 
+});
+});
+</script>
+<div class="widget chartWrapper">
+            <div class="title">
+	            <img src="images/icons/dark/graph.png" alt="" class="titleIcon" />
+	            <h6>Wskażnik skutecznosci</h6>
+	            <div class="leftIcons">
+	            	<form id="campaign_form">
+	            		<select name="id_campaign" id="campaign_list"><?php foreach($this->campaign as $key => $value): echo "<option value='$value[id]'>$value[name]</option>"; endforeach;?></select>
+	            	</form>
+	            
+	            </div>
+			     <div class="topIcons">
+					<a class="toggleWidget tipS" href="#" original-title="Show/Hide Content"><img alt="" src="images/icons/toggleTop.png"></a>
+				 </div>
+            </div>
+            <div class="body"><div class="bars" id="placeholder1"></div></div>
+</div>
+<?php endif; ?>
+
+

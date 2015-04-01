@@ -1,0 +1,90 @@
+<?php 
+	$this->headTitle()->setSeparator(' - ');
+	echo $this->doctype() 
+?>
+  <?php echo $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8'); ?>
+  <?php echo $this->headTitle(); ?>
+<base href="<?php echo $this->baseUrl().'/'; ?>" />
+  <?php echo $this->headLink()->prependStylesheet('css/site.css'); ?>
+  <?php echo $this->headLink()->prependStylesheet('css/simple_common.css'); ?>
+  <?php echo $this->jQuery()->setVersion('1.4.2')->enable()
+  	->setUiLocalPath('http://jquery-ui.googlecode.com/svn/tags/1.7/ui/minified/jquery-ui.min.js')->UIenable(); ?>
+
+
+  <?php echo $this->jQuery()->addStylesheet('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7/themes/smoothness/jquery-ui.css'); ?>
+<script type="text/javascript">
+		$(function() {
+			$.datepicker.setDefaults($.datepicker.regional['pl']);
+
+			$(".datePicker").datepicker(
+				{
+					dateFormat: 'yy-mm-dd',
+					minDate: '-20y',
+					maxDate: '+0d',
+					size: '10',
+					changeYear: 'true',
+					showStatus: 'true'
+				}
+			);
+		
+	  }); 
+</script>
+
+
+</head>
+<body>
+<div id="left">
+
+	<div class="menu_t">
+	<div class="menu_b">
+	<div class="menu">
+	<h2>Menu</h2>
+	      <h3><a href="<?php echo $this->url(
+	            array('module'=>'admin','controller'=>'index', 'action' => 'index'),
+	            '',
+	            true) ?>">Home</a></h3> 
+	      
+	  
+	      	<h3>Administratorzy</h3>
+	        <ul>
+	      		<li>
+	      		    <a href="<?php echo $this->url(
+		            array('module'=>'admin','controller'=>'admins', 'action' => 'index'),
+		            '',
+		            true) ?>">Lista</a>
+	      		</li>
+	      	</ul>
+	      	<h3>Klienci</h3>
+	        <ul>
+	      		<li>
+	      		    <a href="<?php echo $this->url(
+		            array('module'=>'admin','controller'=>'client', 'action' => 'index'),
+		            '',
+		            true) ?>">Lista</a>
+	      		</li>
+	      	</ul>
+	</div>
+  	</div>
+	</div>
+</div>
+
+<div id="header"><div class="logo"><span>Newsletter</span> v 1.0</div><?php if($this->identity): ?>
+     <a href="<?php echo $this->url(
+            array('controller'=>'auth', 'action' => 'logout'),
+            '',
+            true) ?>">wyloguj</a>
+     <a id="user_config" href="<?php echo $this->url(
+		    array('controller'=>'user', 'action' => 'config'),
+		    '',
+		    true) ?>">ustawienia</a>
+    <?php endif; ?></div>
+  
+<div id="middle">
+    <?php echo $this->layout()->content; ?>
+	</div>
+	<div id="footer">
+	  <a href="#">Mailing System</a>
+	
+	</div>
+</body>
+</html>

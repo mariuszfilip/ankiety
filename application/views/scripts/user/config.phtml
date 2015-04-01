@@ -1,0 +1,50 @@
+<?php 
+    echo $this->headScript()->appendFile( $this->baseUrl().'/mailing/public/js/jquery.autocomplete.js'); 
+    echo $this->jQuery()->addStylesheet($this->baseUrl().'/mailing/public/js/jquery.autocomplete.css');
+?>
+
+
+
+<div class="ajaxWrapper">
+<div class="widget">
+	<div class="title">
+		<h6><i18n>title.edit.profile</i18n></h6>
+	</div>
+	<div class="body">
+				<?php if(count($this->messages) > 0): ?>
+			        <?php foreach($this->messages as $message): ?>
+			            <p><?php echo $message; ?></p>
+			        <?php endforeach; ?>
+			<?php endif; ?>
+<!-- BEGIN WIDGET BODY -->
+
+<?php echo $this->success; ?>
+<?php echo $this->error; ?>
+<?php echo $this->form; ?>
+
+
+	  
+
+<!-- END WIDGET BODY -->
+	</div>
+</div>
+</div>
+
+
+
+
+
+<script>
+$(document).ready(function() {
+	$("#city").autocomplete(
+		<?php echo "'".$this->syspath."/city/list/'" ?>,
+		{
+			delay:10,
+			minChars:2,
+			matchSubset:1,
+			matchContains:1,
+			cacheLength:10
+		}
+	);
+});
+</script>

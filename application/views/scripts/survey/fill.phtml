@@ -1,0 +1,77 @@
+
+<script>
+    var start =<?php echo $this->min; ?>;//minuty
+    start*=60;
+
+    function f(){
+        minuty=Math.floor(start/60);
+        godz=Math.floor(minuty/60);
+        minuty=minuty-godz*60;
+        start--;
+
+        document.getElementById('czas').innerHTML=godz+' godz '+minuty+' minut  ';
+            if(start<=0){
+                stopFill();
+            }else{
+                setTimeout('f()',1e3);
+            }
+    }
+    function stopFill(){
+        var setUrl = '<?php echo $this->url(array('controller'=>'survey','action'=>'stopfill'));?>';
+        var setEnd = '<?php echo $this->url(array('controller'=>'survey','action'=>'end'));?>';
+//        $("#element").submit();
+        $.ajax({
+            url: setUrl,
+            type:'post',
+            data: '{id:<?php  echo $this->id; ?>}',
+            success: function(result){
+//                var responseData = jQuery.parseJSON(result);
+                window.location=setEnd;
+            }
+        });
+    }
+    onload=f;
+</script>
+
+<div class="loginWrapper" style='top:30%;'>
+    <div class="widget">
+
+
+<?php
+        if($this->error==1){
+            echo ' <div class="nNote nInformation hideit">';
+            echo $this->msg;
+            echo '</div>';
+        }else{
+
+
+        if(count($this->messages) > 0): ?>
+    <div class="nNote nInformation hideit">
+    <p><strong><i18n>error</i18n> </strong> <i18n>fill.in.all.the.polls</i18n></p>
+    </div>
+<?php endif; ?>
+
+<?php
+if(!isset($this->success)){
+echo '<h3 id="czas"></h3>';
+echo $this->form;
+}else{
+    if($this->success == 1):
+    ?>
+    <div class="nNote nInformation hideit">
+    <p><i18n>questionnaire.filled.correctly</i18n></p>
+    </div> 
+   <?php
+   endif;
+    if($this->success == 2):
+    ?>
+    <div class="nNote nInformation hideit">
+    <p><i18n>questionnaire.filled.before</i18n></p>
+    </div> 
+   <?php
+    endif;
+}
+        }
+?>
+</div>
+</div>

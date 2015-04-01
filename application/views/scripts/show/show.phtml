@@ -1,0 +1,6 @@
+
+<h1><?php echo $this->subject; ?></h1>
+<p><?php echo $this->content; ?></p>
+<?php if($this->sender != ''): ?>
+<p><?php echo 'Wysłano przez: '.htmlentities($this->sender); ?></p>
+<?php endif; ?>

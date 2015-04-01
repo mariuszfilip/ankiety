@@ -1,0 +1,52 @@
+<div class="ajaxWrapper">
+<div class="widget">
+	 <div class="title titleAutoHeight">
+    		<img class="titleIcon" src="<?php echo $this->baseUrl(); ?>/images/icons/descr/test.png" alt="" />
+    		<h6><i18n><p class="pt0"><i18n>filled.survey</i18n> <?php echo $this->count; ?></p></i18n></h6>
+    </div>
+
+</div>
+<?php
+if($this->survey):
+    foreach($this->survey as $key => $value):
+    if($value['type'] != 1):
+    ?>
+        <div class="widget">
+        			<div class="title">
+        				<img class="titleIcon" alt="" src="<?php echo $this->baseUrl(); ?>/images/icons/dark/pencil.png">
+        				<h6><?php echo $value['header']; ?></h6>
+					</div>
+                    <table cellpadding="0" cellspacing="0" width="100%" class="sTable">
+                    	<?php if($value['type'] == 3): ?>
+                        <thead>
+                            <tr>
+                                <td><i18n>answer</i18n></td>
+                                <td width="80"><i18n>percent</i18n></td>
+                            </tr>
+                        </thead>
+                        <?php endif; ?>
+                        <tbody>
+                        	<?php if($value['type'] == 2): ?>
+                            <tr>
+                                <td><i18n>answers</i18n></td>
+                                <td><?php foreach($value['answer'] as $key2 => $value2): echo $value2['answer']; echo "<br/>"; endforeach; ?></td>
+                            </tr>
+                            <?php endif; ?>
+                            <?php if($value['type'] == 3):
+                                $options = explode(chr(10),$value['option_question']);
+                                $sum = array_sum($value['answer']);
+                            ?>
+                              <tr>
+                                <td><?php foreach($options as $key3 => $value3): echo $value3; echo "<br/>"; endforeach;?></td>
+                                <td><?php foreach($value['answer'] as $key4 => $value4): echo round(($value4*100)/$sum).'%';echo "<br/>"; endforeach; ?></td>
+                            </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>    
+                </div>
+                <?php 
+    endif;
+    endforeach;
+endif;
+?>
+</div>

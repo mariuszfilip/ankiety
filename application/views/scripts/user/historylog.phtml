@@ -1,0 +1,79 @@
+<?php
+	echo $this->headScript()->appendFile( $this->baseUrl().'/mailing/public/js/thickbox-compressed.js'); 
+	echo $this->jQuery()->addStylesheet($this->baseUrl().'/mailing/public/js/thickbox.css');
+?>
+
+<div class="widget">
+	<div class="title">
+		<h6><i18n>title.historylog</i18n></h6>
+	</div>
+<!-- BEGIN WIDGET BODY -->
+
+<table id="list-table" style="width:100%;" class="display dTable">
+<thead></thead>
+<tbody></tbody>
+	<tfoot>
+		<tr>
+			<th>Filtr:</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</tfoot>
+</table>
+<script type="text/javascript">
+var inputSelected = [];
+var oTable;
+var iTable;
+
+$(document).ready(function(){
+
+	initClickAction();
+	
+    oTable = $("#list-table").dataTable({
+      	
+      	fnPreDrawCallback: function(oSettings) {
+			$("#list-table_filter input").attr("placeholder","<i18n>enter.what.you.looking</i18n>...");
+      	},
+    	bJQueryUI: true,
+    	sPaginationType: "full_numbers",
+    	sDom: '<""l>t<"F"fp>',
+    	bScrollCollapse: true,
+    	bServerSide: true,
+    	sAjaxSource: "<?php echo $this->syspath; ?>/user/historylog/",
+		sServerMethod: "post",
+		aoColumnDefs: [
+    		  { aTargets: [0], mDataProp: 'email', sTitle: "<i18n>email</i18n>" },
+	  		  { aTargets: [1], mDataProp: 'status', sTitle: "<i18n>operation</i18n>" },
+  			  { aTargets: [2], mDataProp: 'date', sTitle: "<i18n>date.login</i18n>" },
+        	  { aTargets: [3], mDataProp: 'host', sTitle: "<i18n>host</i18n>"},
+	  		  { aTargets: [4], mDataProp: 'ip', sTitle: "<i18n>ip</i18n>", sWidth: "85px" }
+			],
+			oLanguage: {
+			oPaginate: {
+				sFirst: "<i18n>pagination.start</i18n>",
+				sNext: "<i18n>pagination.next</i18n>",
+				sPrevious: "<i18n>pagination.prev</i18n>",
+				sLast: "<i18n>pagination.finish</i18n>",
+			},
+			sEmptyTable: "<i18n>pagination.no.data.to.view</i18n>",
+			sInfo: "<i18n>view.subscriber</i18n> _START_ - _END_ z _TOTAL_",
+			sSearch: "<i18n>search.table</i18n>",
+			sLengthMenu: "<i18n>rows.in.page</i18n> _MENU_",
+			sInfoEmpty: "<i18n>no.records.to.view</i18n> ",
+			sZeroRecords: "<i18n>no.find.matching.log</i18n>"
+
+		}
+    });
+});
+
+
+
+
+
+
+</script>
+<!-- END WIDGET BODY -->
+	</div>
+</div>

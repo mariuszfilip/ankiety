@@ -1,0 +1,427 @@
+<?php
+	echo $this->headScript()->appendFile( $this->baseUrl().'/js/thickbox-compressed.js'); 
+	echo $this->jQuery()->addStylesheet($this->baseUrl().'/js/thickbox.css');
+?>
+
+
+	<?php if(count($this->messages) > 0): ?>
+			        <?php foreach($this->messages as $message): ?>
+                        <div class="nNote nInformation hideit">
+                        <p><strong><i18n>result</i18n> </strong><?php echo $message; ?></p>
+                        </div>
+			        <?php endforeach; ?>
+   <?php endif; ?>
+
+<div class="widget">
+	<div class="horControlB">
+		<ul>
+	    	<li><a href="<?php echo $this->url(array('controller'=>'survey','action'=>'add'));?>" title="" class=""><img src="<?php echo $this->baseUrl(); ?>/images/icons/control/16/plus.png" alt=""><span>Dodaj egzamin</span></a></li>
+            <li><a href="#" title="" id="edit-selected" ><img src="<?php echo $this->baseUrl(); ?>/images/icons/control/16/edit.png" alt=""><span>Edytuj dane podstawowe</span></a></li>
+	        <li><a href="#" title="" id="delete-selected" ><img src="<?php echo $this->baseUrl(); ?>/images/icons/control/16/busy.png" alt=""><span><i18n>delete</i18n></span></a></li>	       
+	    </ul>
+	</div>
+</div>
+
+<div class="widget">
+	<div class="title">
+		<h6>Lista egzaminów</h6>
+	</div>
+<!-- BEGIN WIDGET BODY -->
+
+<table id="list-table" style="width:80%;" class="display dTable">
+<thead></thead>
+<tbody></tbody>
+	<tfoot>
+		<tr>
+			<th><i18n>filtr</i18n>:</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</tfoot>
+</table>
+
+<!-- END WIDGET BODY -->
+</div>
+
+<div class="clear"></div>
+
+<div id="ajaxForm" style="display: none;"></div>
+<div id="delete-confirm" style="display: none;">
+<p><i18n>are.you.sure.delete.survey</i18n></p>
+</div>
+
+<div id="none-selected" style="display: none;">
+<i18n>nothing.is.selected</i18n>
+</div>
+
+<div id="select-one" style="display: none;">
+<i18n>please.select.one.survey</i18n>
+</div>
+
+<script type="text/javascript">
+var inputSelected = [];
+var oTable;
+var iTable;
+
+$(document).ready(function(){
+
+	initClickAction();
+	
+    oTable = $("#list-table").dataTable({
+        fnPreDrawCallback: function(oSettings) {
+            $("#list-table_filter input").attr("placeholder","<i18n>enter.what.you.looking</i18n>...");
+        },
+    	fnHeaderCallback: function( nHead, aData, iStart, iEnd, aiDisplay ) {
+        	nHead.getElementsByTagName('th')[0].innerHTML = '<input type="checkbox" class="select-all">';
+      	},
+      	fnFooterCallback: function( nFoot, aData, iStart, iEnd, aiDisplay ) {
+
+      	},
+
+    	bJQueryUI: true,
+    	sPaginationType: "full_numbers",
+    	sDom: '<""l>t<"F"fp>',
+    	bScrollCollapse: true,
+    	bServerSide: true,
+    	sAjaxSource: "<?php echo $this->syspath; ?>/survey/get-list/",
+		sServerMethod: "post",
+		aoColumnDefs: [
+		      { aTargets: [0],
+			    bSortable: false,
+			    bSearchable: false,
+			    sWidth: "25px",
+			    mDataProp: fnSetCheckbox
+		       },
+    		  { aTargets: [1], mDataProp: 'name', sTitle: "<i18n>name</i18n>" },
+        	  { aTargets: [2], sWidth: "50px",mDataProp: 'create_date', sTitle: "<i18n>date.create</i18n>"},
+        	  { aTargets: [3], sWidth: "150px", mDataProp: 'users_count', sTitle: "Przypisanych"},
+			  { aTargets: [4],
+	  			    bSortable: false,
+	  			    bSearchable: false,
+	  			    sWidth: "35px",  
+	  			    mDataProp: fnSetEditButton
+	  		       },
+	  		  { aTargets: [5],
+		  			    bSortable: false,
+		  			    bSearchable: false,
+		  			    sWidth: "35px",  
+		  			    mDataProp: fnSetPreviewButton
+		  		       },
+	  		{ aTargets: [6],
+		  			    bSortable: false,
+		  			    bSearchable: false,
+		  			    sWidth: "40px",
+		  			    mDataProp: fnSetReportButton
+		  	}
+			],
+			oLanguage: {
+				oPaginate: {
+					sFirst: "<i18n>pagination.start</i18n>",
+					sNext: "<i18n>pagination.next</i18n>",
+					sPrevious: "<i18n>pagination.prev</i18n>",
+					sLast: "<i18n>pagination.finish</i18n>",
+				},
+				sEmptyTable: "<i18n>pagination.no.data.to.view</i18n>",
+				sInfo: "<i18n>view.subscriber</i18n> _START_ - _END_ z _TOTAL_",
+
+				sLengthMenu: "<i18n>rows.in.page</i18n> _MENU_",
+				sInfoEmpty: "<i18n>no.records.to.view</i18n> ",
+                sSearch: "<i18n>search.table</i18n>",
+				sZeroRecords: "<i18n>no.find.matching.survey</i18n>"
+
+			},
+		fnRowCallback: fnRowCallback
+    });
+
+    $("select.column-filter").live('change', function(event) {
+    	oTable.fnFilter( $(this).val(), 6 );
+    });
+    function fnSetEditButton(aData, typeCall, toSet) {
+	  	var html = '<a href="<?php echo $this->baseUrl(); ?>/survey/edit/id/' + aData.id + '" class="button blueB editForm"><span><i18n>edit</i18n></span></a>';
+		return html;
+    }
+    function fnSetPreviewButton(aData, typeCall, toSet) {
+	  	var html = '<a href="<?php echo $this->baseUrl(); ?>/survey/preview/id/' + aData.id + '" class="button blueB previewsurveyForm"><span><i18n>preview</i18n></span></a>';
+		return html;
+    }
+    function fnSetReportButton(aData, typeCall, toSet) {
+	  	var html = '<a href="<?php echo $this->baseUrl(); ?>/survey/users/id_survey/' + aData.id + '" class="button blueB reportForm"><span>Przypisani</span></a>';
+		return html;
+    }
+    function fnSetCheckbox(aData, typeCall, toSet) {
+	  	var html = '<input class="select-row" type="checkbox" id="' + aData.id + '">';
+		if($.inArray(aData.id, oTable.fnSettings().gaiSelected) != -1) {
+			html = '<input class="select-row" type="checkbox" id="' + aData.id + '" checked="checked">';
+		}
+		return html;
+    }
+
+    function fnRowCallback(nRow, aData, iDisplayIndex) {
+    	if($.inArray(aData.id, oTable.fnSettings().gaiSelected) != -1) {
+			$(nRow).addClass('row_selected');
+			$(nRow).find("input.select-row").attr("checked", "checked");
+		}
+		$(nRow).addClass('gradeA');
+		return nRow;
+    }
+
+    var settings = oTable.fnSettings();
+    settings.gaiSelected = [];
+
+
+	$('.dTable tbody tr').live('click', function () {
+		var table = $(this).parents("table");
+		var dTable = table.dataTable();
+		var aData = dTable.fnGetData( this );
+		var iId = aData.id;
+		
+		if ( $.inArray(iId, dTable.fnSettings().gaiSelected) == -1 )
+		{
+			selectRow(dTable, iId, this);
+		}
+		else
+		{
+			deselectRow(dTable, iId, this);
+		}
+		
+	} );
+
+	$('.select-all').live('click', function (event) {
+		var table = $(this).parents("table");
+		var dTable = table.dataTable();
+		var rows = table.find("tbody tr");
+		if($(this).hasClass("checked")) {
+			$(this).removeClass("checked");
+			rows.each( function(index, object) {
+				aData = dTable.fnGetData( object );
+				deselectRow(dTable, aData.id, object);
+			});
+		} else {
+			$(this).addClass("checked");
+			rows.each( function(index, object) {
+				aData = dTable.fnGetData( object );
+				selectRow(dTable, aData.id, object);
+			});
+		}
+	});
+	// wsparcie dla linku edycji listy
+	$(".editForm").live('click', function(event) {
+			event.preventDefault();
+			var link = $(this).attr('href');
+        window.location=link;
+//			initColorbox(link);
+	});
+	$(".reportForm").live('click', function(event) {
+		event.preventDefault();
+		var link = $(this).attr('href');
+        window.location=link;
+	});
+	$(".previewsurveyForm").live('click', function(event) {
+		event.preventDefault();
+		var link = $(this).attr('href');
+        window.location=link;
+	});
+	$("#preview-selected").on('click', function(event) {
+		if(oTable.fnSettings().gaiSelected.length == 1) {
+			event.preventDefault();
+			location.href = "<?php echo $this->syspath; ?>/survey/preview/id/" + oTable.fnSettings().gaiSelected[0];
+		} else {
+			$( "#select-one" ).dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}
+		return false;
+	});
+	$("#report-selected").on('click', function(event) {
+		if(oTable.fnSettings().gaiSelected.length == 1) {
+			event.preventDefault();
+			location.href = "<?php echo $this->syspath; ?>/survey/report/id/" + oTable.fnSettings().gaiSelected[0];
+		} else {
+			$( "#select-one" ).dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}
+		return false;
+	});
+
+	$("#delete-selected").on("click", function(event) {
+		event.preventDefault();
+		if(oTable.fnSettings().gaiSelected.length > 0) {
+			$( "#delete-confirm" ).dialog({
+				resizable: false,
+				height:140,
+				modal: true,
+				buttons: {
+					"Tak": function() {
+						$( this ).dialog( "close" );
+						deleteSelected();
+					},
+					"Nie": function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+
+		} else {
+
+			$( "#none-selected" ).dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}
+		
+		return false;
+	});
+
+
+    $("#edit-selected").on("click", function(event) {
+        event.preventDefault();
+        if(oTable.fnSettings().gaiSelected.length > 0) {
+            window.location.href = "<?php echo $this->syspath; ?>/survey/editinfo/id_survey/" + oTable.fnSettings().gaiSelected[0];;
+        } else {
+
+            $( "#none-selected" ).dialog({
+                modal: true,
+                buttons: {
+                    Ok: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+
+        return false;
+    });
+
+	
+});
+
+function deleteSelected() {
+	
+	var selected = oTable.fnSettings().gaiSelected.join();
+	var table = $('#'+selected).parents("table");
+	var dTable = table.dataTable();
+	var rows = table.find("tbody tr");
+		rows.each( function(index, object) {
+			aData = dTable.fnGetData( object );
+			deselectRow(dTable, aData.id, object);
+	});
+	$.ajax({
+		url: "<?php echo $this->syspath; ?>/survey/delete",
+		type: "post",
+		data: {selected: selected},
+		success: function() {
+			$(oTable).find("input[id=" + selected + "]").removeAttr("checked");
+			oTable.fnDraw(false);
+		}		
+	}); 
+}
+
+function selectRow(dataTable, iId, nRow) {
+	dataTable.fnSettings().gaiSelected[dataTable.fnSettings().gaiSelected.length++] = iId;
+	$(dataTable).find("input[id=" + iId + "]").attr("checked", "checked");
+	$(nRow).addClass('row_selected');
+}
+
+function deselectRow(dataTable, iId, nRow) {
+	$(dataTable).find("input[id=" + iId + "]").removeAttr("checked");
+	dataTable.fnSettings().gaiSelected = $.grep(dataTable.fnSettings().gaiSelected, function(value) {
+		return value != iId;
+	} );
+	$(nRow).removeClass('row_selected');
+}
+
+function showInputTable(ajaxSource, resultHref) {
+	$.colorbox({
+		inline: true,
+		width: '50%',
+		height: '550px',
+		href: "#ajaxForm",
+		open: true, 
+		onComplete: function() {
+			var iTable = initInputTable(ajaxSource);
+			var settings = iTable.fnSettings();
+			if(!settings.gaiSelected) { 
+				settings.gaiSelected = [];
+			}
+		}
+	});
+	$("#input-table-done").off();
+	$("#input-table-cancel").off();
+
+	$("#input-table-done").on('click', function(event) {
+		var ids = $("#input-table").dataTable().fnSettings().gaiSelected.join();
+		var selected = $("#list-table").dataTable().fnSettings().gaiSelected.join();
+		$.ajax({
+			url: resultHref,
+			data: { id: ids, selected: selected },
+			success: function() {
+				$.colorbox.close();
+				$("#list-table").dataTable().fnDraw(true);
+			}
+		});
+
+		return false;
+	});
+
+	$("#input-table-cancel").on('click', function() {
+		$.colorbox.close();
+		return false;
+	});
+
+}
+
+function initInputTable(ajaxSource) {
+
+    var iTable = $("#input-table").dataTable({
+		bJQueryUI: true,
+		bDestroy: true,
+    	sPaginationType: "full_numbers",
+    	sDom: '<""l>t<"F"fp>',
+    	bScrollCollapse: true,
+    	bServerSide: true,
+    	sAjaxSource: ajaxSource,
+		sServerMethod: "post",
+		aoColumnDefs: [
+		   { aTargets:[0],
+			   bSortable: false,
+			   bSearchable: false,
+			   sWidth: "35px",  
+			   mDataProp: function(aData, typeCall, toSet) {
+		    	  	var html = '<input class="select-row" type="checkbox" id="' + aData.id + '">';
+					if($.inArray(aData.id, inputSelected) != -1) {
+						html = '<input class="select-row" type="checkbox" id="' + aData.id + '" checked="checked">';
+					}
+					return html;
+			      }
+		    },
+		   { aTargets:[1], mDataProp: 'name', sTitle: "Nazwa" }
+		],
+		fnHeaderCallback: function( nHead, aData, iStart, iEnd, aiDisplay ) {
+        	nHead.getElementsByTagName('th')[0].innerHTML = '<input type="checkbox" class="select-all">';
+      	},
+
+	});
+
+	return iTable;
+}
+
+</script>

@@ -1,0 +1,193 @@
+<?php echo $this->doctype('XHTML1_TRANSITIONAL') ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php
+    // charset ustawiany jest w bootstrapie
+     echo $this->headMeta()->setName('viewport', 'width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' ); ?>
+    <?php echo $this->headTitle(); ?>
+    <base href="<?php echo $this->baseUrl().'/'; ?>" />
+
+    <?php echo $this->headLink()->prependStylesheet('css/main.css'); ?>
+      <?php echo $this->jQuery()->setVersion('1.7')->enable()->setUiLocalPath('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')->UIenable(); ?>
+	<?php echo $this->headScript()->appendFile('js/plugins/ui/jquery.tipsy.js')
+									->appendFile('js/plugins/ui/jquery.collapsible.min.js')
+									->appendFile('js/plugins/ui/jquery.prettyPhoto.js')
+									->appendFile('js/plugins/ui/jquery.colorbox.js')
+									->appendFile('js/plugins/forms/uniform.js')
+									->appendFile('js/plugins/forms/jquery.validationEngine-en.js')
+									->appendFile('js/plugins/forms/jquery.validationEngine.js')
+									->appendFile('js/plugins/forms/jquery.dualListBox.js')
+									->appendFile('js/plugins/tables/datatable.js')
+									->appendFile('js/plugins/tables/tablesort.min.js')
+									->appendFile('js/plugins/tables/resizable.min.js')
+									->appendFile('js/plugins/charts/jquery.sparkline.min.js')
+									->appendFile('js/custom.js'); ?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+$('.oLightbox').click(function(event){
+	event.preventDefault();
+	var link = $(this).attr('rel');
+	initColorbox(link);
+});
+
+});
+
+function initColorbox(link){
+	$.colorbox({
+		inline: true,
+		href: '.'+link,
+		width: '460px',
+		onComplete: function(){
+			$('.closeLb').click(function(event){
+				event.preventDefault();
+				$.colorbox.close();
+			});
+		}
+	});
+}
+</script>
+</head>
+
+<body class="nobg loginPage">
+
+<!-- Top fixed navigation -->
+<div class="topNav">
+    <div class="wrapper">
+        <div class="userNav">
+            <ul>
+                <li><a href="<?php echo $this->url(array('controller'=>'index', 'action' => 'index'),'',true) ?>" title=""><img src="images/icons/topnav/mainWebsite.png" alt="Powrót do strony Mail-box.pl" /><span>Powrót do strony Mail-Box.pl</span></a></li>
+                <li><a  class="oLightbox" title="" rel="contactBox"><img src="images/icons/topnav/contactAdmin.png" alt="Kontakt" /><span>Kontakt</span></a></li>
+                <li><a  class="oLightbox" title="" rel="supportBox"><img src="images/icons/topnav/help.png" alt="Pomoc" /><span>Pomoc</span></a></li>
+        				<li class="dd"><a title=""><img src="images/flag/pl.gif" alt="Wybierz język" /><span>Zmień język</span></a>
+        					<ul class="userDropdown">
+        						<li><a href="language/change/lang/pl" title="" class=""><img src="images/flag/pl.gif" alt="Wybierz język" />Polski</a></li>
+        						<li><a href="language/change/lang/en" title="" class=""><img src="images/flag/england.gif" alt="Wybierz język" />English</a></li>
+        					</ul>
+        				</li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<?php echo $this->layout()->content; ?>
+
+<!-- Footer line -->
+<div id="footer">
+    <div class="wrapper">Wszelkie prawa zastrzeżone <a href="http://mail-box.pl" title="Newsletter">Mail-box sp. z o.o.</a></div>
+</div>
+
+<!-- Popup line -->
+<div style="display: none;">
+	<div class="contactBox ajaxWrapper">
+	<div class="widget">
+		<div class="title">
+			<h6>Kontakt</h6>
+		</div>
+		<div class="body">
+			<div class="image"><img src="images/user.png" alt="" /></div>
+			<p>Prosimy o kontakt telefoniczny bądź pozostawinie wiadomości mailowej.<br />Nasz konsultant wkrótce się odezwie.</p>
+			<p class="contact">
+				<span class="left">Telefon: 22 737764</span>
+				<span class="right">E-mail: rafs@kas.pl</span>
+			</p>
+			<form method="post" action="" class="validate form">
+				<fieldset>
+					<div class="formRow">
+						<label for="name">Imię:<span class="req">*</span></label>
+						<div class="loginInput"><input type="text" name="name" class="validate[required]" id="name" /></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="formRow">
+						<label for="surname">Nazwisko:<span class="req">*</span></label>
+						<div class="loginInput"><input type="text" name="name" class="validate[required]" id="surname" /></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="formRow">
+						<label for="subject">Temat:<span class="req">*</span></label>
+						<div class="loginInput"><input type="text" name="subject" class="validate[required]" id="subject" /></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="formRow">
+						<label for="content">Treść:<span class="req">*</span></label>
+						<div class="loginInput"><textarea class="validate[required]" id="content"></textarea></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="loginControl">
+						<div class="rememberMe"><input type="checkbox" id="copyMe" name="copyMe" /><label for="copyMe">Wyślij kopię do mnie</label></div>
+						<input type="submit" value="Wyślij" class="blueB logMeIn" />
+						<div class="clear"></div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	</div>
+</div>
+
+<div style="display: none;">
+	<div class="supportBox ajaxWrapper">
+	<div class="widget">
+		<div class="title">
+			<h6>Support</h6>
+		</div>
+		<div class="body">
+			<div class="image"><img src="images/user.png" alt="" /></div>
+			<p>Prosimy o kontakt ze swoim opiekunem. Powodzenia!</p>
+			<p class="contact">E-mail: rafs@kas.pl</p>
+			<form method="post" action="" class="validate form">
+				<fieldset>
+					<div class="formRow">
+						<label for="name">Imię:<span class="req">*</span></label>
+						<div class="loginInput"><input type="text" name="name" class="validate[required]" id="name" /></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="formRow">
+						<label for="surname">Nazwisko:<span class="req">*</span></label>
+						<div class="loginInput"><input type="text" name="name" class="validate[required]" id="surname" /></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="formRow">
+						<label>Selects:<span class="req">*</span></label>
+						<div class="loginInput">
+							<select name="selectReq" id="selectReq" class="validate[required] test" >
+								<option value="">Usual select box</option>
+								<option value="opt2">Option 2</option>
+								<option value="opt3">Option 3</option>
+								<option value="opt4">Option 4</option>
+								<option value="opt5">Option 5</option>
+								<option value="opt6">Option 6</option>
+								<option value="opt7">Option 7</option>
+								<option value="opt8">Option 8</option>
+							</select>
+						</div><div class="clear"></div>
+					</div>
+					
+					<div class="formRow">
+						<label for="content">Treść:<span class="req">*</span></label>
+						<div class="loginInput"><textarea class="validate[required]" id="content"></textarea></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="loginControl">
+						<div class="rememberMe"><input type="checkbox" id="copyMe" name="copyMe" /><label for="copyMe">Wyślij kopię do mnie</label></div>
+						<input type="submit" value="Wyślij" class="blueB logMeIn" />
+						<div class="clear"></div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="clear"></div>
+</body>
+</html>

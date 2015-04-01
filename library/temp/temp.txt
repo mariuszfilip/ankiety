@@ -1,0 +1,379 @@
+Date: Mon, 16 May 2011 12:27:19 +0200
+Return-Path: MailBox
+To: "test@taniec.com.pl" <test@taniec.com.pl>
+From: MailBox <MailBox>
+Subject: Biuletyn informacyjny HP
+Message-ID: <38552f77c805dc83b059ad4d8603da4f@eds.deve.li>
+X-Priority: 3
+X-Mailer: mail
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/html; charset="UTF-8"
+
+<table width=\"600\" border=\"0\"
+cellpadding=\"0\" cellspacing=\"0\">
+    <tbody>
+        <tr>
+            <td align=\"\">
+            <p>&nbsp;</p>
+            <p>Witaj&nbsp;{first_name}</p>
+            <table width=\"540\" border=\"0\"
+cellpadding=\"0\" cellspacing=\"0\">
+                <tbody>
+                    <tr>
+                        <td width=\"105\"><img
+alt=\"HP Logo\" width=\"120\" height=\"60\"
+src=\"http://eds.deve.li/mailing/public/js/wyswig/image/hp111.gif\"
+/></td>
+                        <td width=\"400\"><img
+alt=\"Czas na efektywne wykorzystanie energii:
+Duża moc nie musi oznaczać dużych
+koszt&oacute;w\" width=\"425\" height=\"60\"
+src=\"http://eds.deve.li/mailing/public/js/wyswig/image/hp11.gif\"
+/></td>
+                        <td rowspan=\"2\"
+width=\"2\" height=\"58\">&nbsp;&nbsp;</td>
+                        <td rowspan=\"2\"
+width=\"52\" height=\"90\"><center>  <a
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">
+<img width=\"52\" border=\"0\" height=\"90\"
+alt=\"\"
+src=\"http://eds.deve.li/mailing/public/js/wyswig/image/hp12.gif\"
+/></a></center></td>
+                    </tr>
+                    <tr>
+                        <td
+height=\"32\">&nbsp;</td>
+                        <td
+height=\"32\">&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table border=\"0\" cellpadding=\"0\"
+cellspacing=\"0\">
+    <tbody>
+        <tr>
+            <td valign=\"top\" width=\"425\">
+            <table width=\"425\" border=\"0\">
+                <tbody>
+                    <tr>
+                        <td valign=\"top\"
+width=\"1\">&nbsp;</td>
+                        <td width=\"415\"><font
+color=\"#000000\" face=\"Arial, Helvetica, Geneva,
+Swiss, SunSans-Regular\" size=\"2\"><b> Czy wiesz,
+jak redukować koszty IT, nie rezygnując ze
+strategicznych cel&oacute;w przedsiębiorstwa?</b>
+<br />
+                        <br />
+                        Kryzys wcale nie musi
+oznaczać redukcji wydatk&oacute;w na IT, ale ich 
+racjonalizację. Dziś firma musi dwa razy
+obejrzeć każdą złot&oacute;wkę wydaną  na
+informatykę, aby uzyskać oczekiwany zwrot z
+inwestycji. Wybierając  technologię HP
+Integrity, masz <b>gwarancję najwyższej
+niezawodności przy kosztach niższych aż o
+44%<sup>1</sup></b> w por&oacute;wnaniu z
+tradycyjnymi serwerami montowanymi w szafach
+przemysłowych. <br />
+                        <br />
+                        <b>HP Integrity BL870c
+serwer blade</b> z <a
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">procesorami</a>
+<a
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">
+ Intel</a><sup><a style=\"text-decoration: none;\"
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">&reg;
+</a></sup><a
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">Itanium</a><sup><a
+style=\"text-decoration: none;\"
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">&reg;</a></sup>
+to wyjątkowa platforma łącząca możliwości
+infrastruktury<br />
+                        HP BladeSystem &ndash;
+elastyczność oraz niższy całkowity koszt
+posiadania (TCO) &ndash; z niezr&oacute;wnaną
+niezawodnością serwer&oacute;w<br />
+                        HP Integrity. Oferuje
+dostępność, niezawodność i sprawność
+wymaganą do  uruchamiania aplikacji krytycznych
+dla działania firmy. Wszystkie te  zalety są
+jeszcze wzmacniane przez wyjątkowo wysokie
+bezpieczeństwo i  niezr&oacute;wnaną
+niezawodność środowiska operacyjnego HP-UX. 
+<br />
+                        <br />
+                        HP Integrity BL870c serwer
+blade z <a
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">procesorami</a>
+<a
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">
+ Intel</a><sup><a style=\"text-decoration: none;\"
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">&reg;
+</a></sup><a
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">Itanium</a><sup><a
+style=\"text-decoration: none;\"
+onclick=\"JavaScript:win=window.open(\'http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\',\'01902067512\',\'resizable=1,scrollbars=0,width=340,height=150\');win.focus();\"
+target=\"01902067512\"
+href=\"http://syndication.intel.com/DistributeModule.aspx?ppc_cid=IIP_01902071612&amp;cc=PL&amp;contentType=0\">&reg;</a></sup>:
+sukces w czasie kryzysu</font>  <br />
+                        <br />
+                        <font color=\"#003366\"
+face=\"Arial, Helvetica, Geneva, Swiss,
+SunSans-Regular\" size=\"2\"> <a target=\"_blank\"
+href=\"http://www.hp.pl/oszczedzaj\"> <img
+width=\"420\" border=\"0\" height=\"59\" alt=\"\"
+src=\"http://eds.deve.li/mailing/public/js/wyswig/image/hp15.gif\"
+/></a></font> <br />
+                        <br />
+                        <font color=\"#000000\"
+face=\"Arial, Helvetica, Geneva, Swiss,
+SunSans-Regular\" size=\"2\">Usługi  HP Care Pack
+pozwalają zmaksymalizować zysk wynikający z
+zakupu HP  BladeSystem poprzez szybkie
+uruchomienie, optymalizację konfiguracji  oraz
+zapewnienie wsparcia dla całego rozwiązania. <br
+/>
+                        <br />
+                        </font></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table width=\"425\" border=\"0\">
+                <tbody>
+                    <tr>
+                        <td valign=\"top\"
+width=\"5\">&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+            <td width=\"1\"
+bgcolor=\"#cccccc\">&nbsp;</td>
+            <td valign=\"top\" width=\"164\">
+            <table width=\"164\" border=\"0\">
+                <tbody>
+                    <tr height=\"25\">
+                        <td><img alt=\"Dowiedz
+się więcej\" width=\"164\" border=\"0\"
+height=\"82\"
+src=\"http://eds.deve.li/mailing/public/js/wyswig/image/hp13.jpg\"
+/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table width=\"164\">
+                <tbody>
+                    <tr>
+                        <td><img alt=\"Dowiedz
+się więcej\" width=\"164\" border=\"0\"
+height=\"22\"
+src=\"http://eds.deve.li/mailing/public/js/wyswig/image/hp14.gif\"
+/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table width=\"164\" border=\"0\">
+                <tbody>
+                    <tr>
+                        <td width=\"150\">
+                        <table width=\"150\"
+border=\"0\">
+                            <tbody>
+                                <tr>
+                                    <td
+valign=\"top\" width=\"9\">&nbsp;</td>
+                                    <td
+width=\"141\"><font color=\"#003366\"
+face=\"Arial, Helvetica, Geneva, Swiss,
+SunSans-Regular\" size=\"2\">&raquo; <a
+target=\"_blank\"
+href=\"http://www.hp.pl/oszczedzaj\">Kalkulator
+TCO</a></font></td>
+                                </tr>
+                                <tr>
+                                    <td
+valign=\"top\" width=\"9\">&nbsp;</td>
+                                    <td
+width=\"141\"><font color=\"#003366\"
+face=\"Arial, Helvetica, Geneva, Swiss,
+SunSans-Regular\" size=\"2\">&raquo; <a
+target=\"_blank\"
+href=\"http://h71028.www7.hp.com/enterprise/cache/262419-0-0-0-121.html\">Rozwiązania
+SAP na HP Integrity</a></font></td>
+                                </tr>
+                                <tr>
+                                    <td
+valign=\"top\" width=\"9\">&nbsp;</td>
+                                    <td
+width=\"141\"><font color=\"#003366\"
+face=\"Arial, Helvetica, Geneva, Swiss,
+SunSans-Regular\" size=\"2\">&raquo; <a
+target=\"_blank\"
+href=\"http://h20341.www2.hp.com/enterprise/cache/4281-0-0-0-121.html\">Rozwiązania
+Oracle na HP Integrity</a></font></td>
+                                </tr>
+                                <tr>
+                                    <td
+valign=\"top\" width=\"9\">&nbsp;</td>
+                                    <td
+width=\"141\"><font color=\"#003366\"
+face=\"Arial, Helvetica, Geneva, Swiss,
+SunSans-Regular\" size=\"2\">&raquo; <a
+target=\"_blank\"
+href=\"http://h71028.www7.hp.com/enterprise/cache/258348-0-0-0-121.html\">Wirtualizacja</a></font></td>
+                                </tr>
+                                <tr>
+                                    <td
+valign=\"top\" width=\"9\">&nbsp;</td>
+                                    <td
+width=\"141\"><font color=\"#003366\"
+face=\"Arial, Helvetica, Geneva, Swiss,
+SunSans-Regular\" size=\"2\">&raquo; <a
+target=\"_blank\"
+href=\"http://www.integrity.com.pl/\">Integrity
+&ndash; portal w języku polskim</a></font></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table border=\"0\" cellpadding=\"0\"
+cellspacing=\"0\">
+    <tbody>
+        <tr>
+            <td width=\"427\"><img alt=\"\"
+width=\"435\" border=\"0\" height=\"1\"
+src=\"cid:attach-0\" /></td>
+            <td width=\"170\"
+bgcolor=\"#cccccc\"><img alt=\"\" width=\"165\"
+border=\"0\" height=\"1\" src=\"cid:attach-0\"
+/></td>
+        </tr>
+    </tbody>
+</table>
+<table width=\"600\" border=\"0\">
+    <tbody>
+        <tr>
+            <td width=\"600\"><img width=\"600\"
+border=\"0\" height=\"30\" alt=\"\"
+src=\"http://eds.deve.li/mailing/public/js/wyswig/image/hp16.gif\"
+/></td>
+        </tr>
+    </tbody>
+</table>
+<table width=\"605\" border=\"0\">
+    <tbody>
+        <tr>
+            <td bgcolor=\"#999999\"
+height=\"4\">&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+<table width=\"605\" border=\"0\">
+    <tbody>
+        <tr>
+            <td witdh=\"100\" bgcolor=\"#666666\"
+height=\"30\"><center> <a target=\"_blank\"
+href=\"http://www.hp.pl/oszczedzaj\"> <font
+color=\"#ffffff\" face=\"verdana, arial,
+helvetica, sans-serif;\" size=\"1\"><b>&raquo;
+Kalkulator TCO  </b></font></a></center></td>
+            <td witdh=\"100\" bgcolor=\"#666666\"
+height=\"30\"><center> <a target=\"_blank\"
+href=\"http://h20341.www2.hp.com/integrity/cache/332341-0-0-0-121.html\">
+<font color=\"#ffffff\" face=\"verdana, arial,
+helvetica, sans-serif;\" size=\"1\"><b>&raquo;
+Serwery HP Integrity</b></font></a></center></td>
+            <td witdh=\"100\" bgcolor=\"#666666\"
+height=\"30\"><center> <a target=\"_blank\"
+href=\"http://h20338.www2.hp.com/hpux11i/cache/324545-0-0-0-121.html\">
+<font color=\"#ffffff\" face=\"verdana, arial,
+helvetica, sans-serif;\" size=\"1\"><b>&raquo;
+System operacyjny
+HP-UX</b></font></a></center></td>
+            <td witdh=\"100\" bgcolor=\"#666666\"
+height=\"30\"><center> <a target=\"_blank\"
+href=\"http://www.hp.pl/carepack\">  <font
+color=\"#ffffff\" face=\"verdana, arial,
+helvetica, sans-serif;\" size=\"1\"><b>&raquo; HP
+Care Pack </b></font></a></center></td>
+        </tr>
+    </tbody>
+</table>
+<table width=\"600\" border=\"0\">
+    <tbody>
+        <tr>
+            <td>
+            <table width=\"600\" border=\"0\">
+                <tbody>
+                    <tr>
+                        <td width=\"560\"><font
+color=\"#666666\" face=\"Arial, Helvetica, Geneva,
+Swiss, SunSans-Regular\" size=\"1\"><sup>1</sup> 
+Wg por&oacute;wnania cen listowych dostępnych w
+Internecie 16 serwer&oacute;w HP  Integrity BL870c
+oraz 16 serwer&oacute;w HP Integrity rx6600 w
+analogicznych  konfiguracjach.  <br />
+                        &copy;2009 Hewlett-Packard
+Development Company, L.P. Wszelkie prawa 
+zastrzeżone. Informacje zawarte w niniejszym
+dokumencie mogą ulec  zmianie bez powiadomienia.
+Publikacja nie jest ofertą handlową w 
+rozumieniu przepis&oacute;w prawa. Jedyne
+gwarancje na produkty i usługi HP są 
+wyszczeg&oacute;lnione w dołączonych do nich
+wyraźnych stwierdzeniach  dotyczących gwarancji.
+Niniejszy dokument nie może być interpretowany 
+jako dodatkowa gwarancja. HP nie ponosi
+odpowiedzialności za braki ani  za błędy
+techniczne lub redakcyjne w niniejszej publikacji.
+Intel, logo  Intel, Itanium i Itanium Inside są
+znakami towarowymi firmy Intel  Corporation w USA
+i w innych krajach. <br />
+                        <a targer=\"_blank\"
+href=\"http://www.hp.com.pl/%3Chttp://lotechad.hit.gemius.pl/hitredir/id=dwNLog9jNEFnP8t6PfCpVqQ_XtGuLSOOXZm5UYS3GGD.U7/stparam=mmdodlqoaa/url=http:/www.hp.com.pl/?jumpid=em_r2287_1-mrmid_pl_pl_large_tsg/dm/gazeta_edm/sac40pl%0d%0a%3E\">Hewlett-Packard
+Website</a> <br />
+                        <a targer=\"_blank\"
+href=\"http://h41159.www4.hp.com/campaigns/mc_blades/index.html\">Ochrona
+danych osobowych</a></font></td>
+                        <td
+width=\"20\">&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

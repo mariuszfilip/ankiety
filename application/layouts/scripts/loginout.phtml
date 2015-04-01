@@ -1,0 +1,66 @@
+<?php echo $this->doctype('XHTML1_TRANSITIONAL') ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php
+    // charset ustawiany jest w bootstrapie
+     echo $this->headMeta()->setName('viewport', 'width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' ); ?>
+    <?php echo $this->headTitle(); ?>
+    <base href="<?php echo $this->baseUrl().'/'; ?>" />
+
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/main.css'); ?>
+      <?php echo $this->jQuery()->setCdnSsl(true)->setVersion('1.7')->enable()->setUiLocalPath('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')->UIenable(); ?>
+	<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/plugins/ui/jquery.tipsy.js')
+									->appendFile($this->baseUrl().'/js/plugins/ui/jquery.collapsible.min.js')
+									->appendFile($this->baseUrl().'/js/plugins/ui/jquery.prettyPhoto.js')
+									->appendFile($this->baseUrl().'/js/plugins/ui/jquery.colorbox.js')
+									->appendFile($this->baseUrl().'/js/plugins/forms/uniform.js')
+									->appendFile($this->baseUrl().'/js/plugins/forms/jquery.validationEngine-en.js')
+									->appendFile($this->baseUrl().'/js/plugins/forms/jquery.validationEngine.js')
+									->appendFile($this->baseUrl().'/js/plugins/forms/jquery.dualListBox.js')
+									->appendFile($this->baseUrl().'/js/plugins/tables/datatable.js')
+									->appendFile($this->baseUrl().'/js/plugins/tables/tablesort.min.js')
+									->appendFile($this->baseUrl().'/js/plugins/tables/resizable.min.js')
+									->appendFile($this->baseUrl().'/js/plugins/charts/jquery.sparkline.min.js')
+									->appendFile($this->baseUrl().'/js/custom.js'); ?>
+
+	<script type = "text/javascript">
+	$(document).ready(function() {
+		 $("img[src='']").remove();
+	});
+	</script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+$('.oLightbox').click(function(event){
+	event.preventDefault();
+	var link = $(this).attr('rel');
+	initColorbox(link);
+});
+
+});
+
+function initColorbox(link){
+	$.colorbox({
+		inline: true,
+		href: '.'+link,
+		width: '460px',
+		onComplete: function(){
+			$('.closeLb').click(function(event){
+				event.preventDefault();
+				$.colorbox.close();
+			});
+		}
+	});
+}
+</script>
+</head>
+
+<body class="nobg loginPage">
+
+
+<?php echo $this->layout()->content; ?>
+
+
+<div class="clear"></div>
+</body>
+</html>

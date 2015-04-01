@@ -1,0 +1,10 @@
+<p>Czy jesteś pewień, że chcesz usunąć dodatkowe pole:
+  <?php echo $this->escape($this->field['label']); ?>
+</p>
+<form action="<?php echo $this->url(array('action'=>'delete')); ?>" method="post">
+<div>
+  <input type="hidden" name="id" value="<?php echo $this->field['id']; ?>" />
+  <input type="submit" name="del" value="<i18n>przycisk.yes</i18n>" />
+  <input type="submit" name="del_no" value="<i18n>przycisk.no</i18n>" />
+</div>
+</form>

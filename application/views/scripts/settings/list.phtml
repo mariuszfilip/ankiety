@@ -1,0 +1,8 @@
+<h1><?php echo $this->title; ?></h1>
+<div style="float:left">
+<p><a class="przycisk" href="<?php echo $this->url(array('controller'=>'additionalfield','action'=>'add'));?>">Dodaj nowe pole</a>
+</div>
+
+<div id="list">
+<?php echo $this->list; ?>
+</div>

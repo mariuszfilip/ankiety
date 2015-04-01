@@ -1,0 +1,12 @@
+<!-- Main content wrapper -->
+<div class="loginWrapper">
+    <div class="widget">
+		<div class="wrapper">
+			<div class="nNote nSuccess">
+				<p><strong><?php $this->translate('logout.correct'); ?></strong><br /><?php echo $this->translate('thanks.for.using'); ?></p>
+			</div>
+			<a class="button dredB" title="" href="<?php echo $this->syspath; ?>" style="margin: 20px 0 32px;"><span><?php echo $this->translate('home.page'); ?></span></a>
+			<a class="button blueB" title="" href="<?php echo $this->url(array('controller'=>'auth','action'=>'login'));?>" style="margin: 20px 0 32px; float: right;"><span><?php echo $this->translate('login.again'); ?></span></a>
+		</div>
+    </div>
+</div>   

@@ -1,0 +1,77 @@
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/ckeditor/ckeditor.js') ?>
+
+<div class="ajaxWrapper">
+    <div id="editor2"></div>
+<div class="widget">
+    	<div class="title titleAutoHeight">
+    		<h6>Edycja egzaminu</h6>
+    	</div>
+	<div class="body">
+			<?php if(count($this->messages) > 0): ?>
+			        <?php foreach($this->messages as $message): ?>
+			            <p><?php echo $message; ?></p>
+			        <?php endforeach; ?>
+			<?php endif; ?>
+			
+<?php echo $this->success?$this->success:""; ?>
+<?php echo $this->error?$this->error:""; ?>
+<?php echo $this->form; ?>
+<div class="buttonSubmit"><button class="input-select" type="button" onclick="$('#element').submit();" name="button">Zapisz</button></div>
+<div class="ajaxResponse"></div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+    for (instance in CKEDITOR.instances) {
+
+        CKEDITOR.instances[instance].updateElement();
+
+    }
+
+
+            var url = '<?php echo $this->baseUrl(); ?>';
+
+            $('.ckeditor').each(function(i,v){
+
+                CKEDITOR.replace( $(v).attr('id'),
+                    {
+                        customConfig:url + '/js/ckeditor/config.js',
+                        filebrowserBrowseUrl : url +'/js/ckfinder/ckfinder.html',
+                        filebrowserImageBrowseUrl : url +'/js/ckfinder/ckfinder.html?type=Images',
+                        filebrowserFlashBrowseUrl : url +'/js/ckfinder/ckfinder.html?type=Flash',
+                        filebrowserUploadUrl : url +'/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                        filebrowserImageUploadUrl :url + '/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                        filebrowserFlashUploadUrl : url +'/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+                    });
+            })
+
+
+		$('#submitbutton').live('click', function (event) {
+            for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+	        dataString = $("#element").serialize();
+			$.ajax({
+		      type: "POST",
+		      url: "<?php echo $this->syspath.'/survey/addelement/'; ?>",
+		      data: dataString,
+		      async : false,
+		      dataType: "html",
+		      success: function(data) {
+		    	  	 window.location=window.url
+			  }
+			});
+
+			return false;
+	    });
+
+    var setUrl = '<?php echo $this->url(array('controller'=>'survey','action'=>'edit'));?>';
+    var setLocation = '<?php echo $this->url(array('controller'=>'survey','action'=>'edit'));?>';
+			ajaxFormRefresh( setUrl,setUrl );
+
+
+});  
+</script>

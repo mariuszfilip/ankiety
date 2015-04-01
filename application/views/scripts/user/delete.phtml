@@ -1,0 +1,10 @@
+<p><i18n>are.you.sure.delete.user</i18n>
+  <?php echo $this->escape($this->user['first_name']." ".$this->user['last_name']); ?>
+</p>
+<form action="<?php echo $this->url(array('action'=>'delete')); ?>" method="post">
+<div>
+  <input type="hidden" name="id" value="<?php echo $this->user['id']; ?>" />
+  <input type="submit" name="del" value="<i18n>przycisk.yes</i18n>" />
+  <input type="submit" name="del_no" value="<i18n>przycisk.no</i18n>" />
+</div>
+</form>

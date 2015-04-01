@@ -1,0 +1,22 @@
+<?php
+$count = 0;
+foreach($this->pages as $page)
+{
+    $properties = $page->getCustomProperties();
+    $count++; 
+    
+    if($count == count($this->pages)){
+        echo '<li class="current">';
+    }else{
+        echo '<li>';
+    }
+    if(!isset($properties['link']) || $properties['link'] !== false){
+        echo '<a href="' . $page->getHref() . '">';
+    }
+    echo $this->translate($page->getLabel());
+    if(!isset($properties['link']) || $properties['link'] !== false){
+        echo '</a>';
+    }
+     echo '</li>';
+
+}

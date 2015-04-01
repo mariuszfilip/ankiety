@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php
+    // charset ustawiany jest w bootstrapie
+     echo $this->headMeta()->setName('viewport', 'width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' ); ?>
+    <?php echo $this->headTitle(); ?>
+    <base href="<?php echo $this->baseUrl().'/'; ?>" />
+
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/main.css'); ?>
+      <?php echo $this->jQuery()->setCdnSsl(true)->setVersion('1.7')->enable()->setUiLocalPath('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')->UIenable(); ?>
+	<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/plugins/ui/jquery.tipsy.js')
+									->appendFile($this->baseUrl().'/js/plugins/ui/jquery.collapsible.min.js')
+									->appendFile($this->baseUrl().'/js/plugins/ui/jquery.prettyPhoto.js')
+									->appendFile($this->baseUrl().'/js/plugins/ui/jquery.colorbox.js')
+									->appendFile($this->baseUrl().'/js/plugins/forms/uniform.js')
+									->appendFile($this->baseUrl().'/js/plugins/forms/jquery.validationEngine-en.js')
+									->appendFile($this->baseUrl().'/js/plugins/forms/jquery.validationEngine.js')
+									->appendFile($this->baseUrl().'/js/plugins/forms/jquery.dualListBox.js')
+									->appendFile($this->baseUrl().'/js/plugins/tables/datatable.js')
+									->appendFile($this->baseUrl().'/js/plugins/tables/tablesort.min.js')
+									->appendFile($this->baseUrl().'/js/plugins/tables/resizable.min.js')
+	
+									
+									->appendFile($this->baseUrl().'/js/plugins/charts/jquery.sparkline.min.js')
+									->appendFile($this->baseUrl().'/js/jquery.ajaxfileupload.js')
+									->appendFile($this->baseUrl().'/js/custom.js'); ?>
+
+
+	<script type = "text/javascript">
+	$(document).ready(function() {
+		 $("img[src='']").remove();
+	});
+	</script>
+</head>
+<body class="nobg loginPage">
+<!-- Left side content -->
+
+
+<!-- Right side -->
+<div id="rightSide">
+
+    <!-- Top fixed navigation -->
+    <div class="topNav">
+        <div class="wrapper">
+            <div class="welcome"><a href="#" title=""><img src="<?php echo $this->baseUrl(); ?>/images/userPic.png" alt="" /></a><span><?php $page_session_space = new Zend_Session_Namespace('page'); echo $page_session_space->user->first_name.', '.$page_session_space->user->last_name; ?></span></div>
+            <div class="userNav" style="float:right;">
+                <ul>
+                    <li><a href="<?php echo $this->url(array('controller'=>'survey', 'action' => 'index'),'',true) ?>" title=""><span>Egzaminy</span></a></li>
+                    <li><a href="<?php echo $this->url(array('controller'=>'user', 'action' => 'index'),'',true) ?>" title=""><span>Użytkownicy</span></a></li>
+                    <li class="dd"><a href="#" title=""><img src="<?php echo $this->baseUrl(); ?>/images/icons/topnav/profile.png" alt="" /><span><i18n>management.account</i18n></span></a>
+                        <ul class="userDropdown">
+                            <li><a href="<?php echo $this->url(array('controller'=>'user', 'action' => 'config'),'',true) ?>" title="<?php echo $this->url(array('controller'=>'user', 'action' => 'config'),'',true) ?>" class="sAdd"><i18n>edit.info</i18n></a></li>
+                            <li><a href="<?php echo $this->url(array('controller'=>'user', 'action' => 'changepassword'),'',true) ?>" title="Zmiana hasła" class="sInbox"><i18n>change.password</i18n></a></li>
+                            <li><a href="<?php echo $this->url(array('controller'=>'user', 'action' => 'historylog'),'',true) ?>" title="Historia logowan" class="sTrash"><i18n>historylog</i18n></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<?php echo $this->url(array('controller'=>'auth', 'action' => 'logout'),'',true) ?>" title=""><img src="<?php echo $this->baseUrl(); ?>/images/icons/topnav/logout.png" alt="" /><span><i18n>logout</i18n></span></a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Main content wrapper -->
+    <div class="wrapper">
+        <br />
+    <?php echo $this->layout()->content; ?>
+    </div>
+
+</div>
+<div class="clear"></div>
+
+</body>
+</html>

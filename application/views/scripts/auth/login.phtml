@@ -1,0 +1,45 @@
+<style type="text/css">
+    .loginWrapper .widget {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #CDCDCD;
+        display: block;
+        width: 325px;
+    }
+    .widget .title {
+        background: none ;
+    }
+    html{
+        background: linear-gradient(45deg, #020031 0%, #6D3353 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
+        color: #FFFFFF;
+        padding: 40px 0;
+        position: relative;
+        text-align: center;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.075);
+    }
+
+</style>
+<div class="loginWrapper">
+    <div class="widget">
+        <div class="title"><h6><?php echo $this->title; ?></h6></div>
+			<?php if(count($this->messages) > 0): ?>
+			        <?php foreach($this->messages as $message): ?>
+			            <p><?php echo $message; ?></p>
+			        <?php endforeach; ?>
+			<?php endif; ?>
+        <?php if(isset($this->not_actived)){
+          echo '<p>'.$this->translate('account.not.active').'</p>';
+          echo '<p>'.$this->translate('if.email.not.reached ').'<a href="'.$this->syspath.'/client/sendagain/id/'.$this->not_actived.'/">'.$this->translate('send.again').'</a>.</p>';
+        }
+        ?>
+         <?php if(isset($this->error)){
+          echo '<p>'.$this->error.'</p>';
+        }
+        ?>
+       <?php echo $this->form ?>
+       <div class="remind">
+       <a style='padding:15px;' href="<?php echo $this->url(array('controller'=>'auth','action'=>'remind-password')); ?>"><?php echo $this->translate('can.not.login'); ?></a>
+       </div>
+    </div>
+  
+</div>    

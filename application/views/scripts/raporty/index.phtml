@@ -1,0 +1,73 @@
+<style type="text/css">
+    div.pytanie {
+        background-color: #F7F5FA;
+        border-radius: 5px 5px 0 0;
+        border-top: solid 1px #000000;
+        border-left: solid 1px #000000;
+        border-right: solid 1px #000000;
+        padding: 10px;
+        text-shadow: 0 1px 0 #FFFFFF;
+    }
+
+    div.odpowiedziano {
+        background-color: #fff8dc;
+        /*border-radius: 0 0 5px 5px;*/
+        padding: 10px;
+        border-left: solid 1px #000000;
+        border-right: solid 1px #000000;
+        text-shadow: 0 1px 0 #F7F5BB;
+    }
+
+    div.suma {
+        font-size: 20px;
+        /*background-color: #a6e062;*/
+        border-radius: 5px 5px 5px 5px;
+        border: solid 1px #000000;
+        padding: 10px;
+        text-shadow: 0 1px 0 #FFFFFF;
+    }
+
+    div.punkty {
+        background-color: #ffffbe;
+        border-radius: 0 0 5px 5px;
+        margin-bottom: 5px;
+        border-bottom: solid 1px #000000;
+        border-left: solid 1px #000000;
+        border-right: solid 1px #000000;
+        padding: 10px;
+        text-shadow: 0 1px 0 #FFFFFF;
+    }
+
+</style>
+<div class="pytanie">
+    <h2>Egzamin: <?php echo $this->egzamin['name'];?></h2>
+    <br>
+    <strong><?php echo $this->user['first_name'] . ' ' . $this->user['last_name'] ?></strong>
+</div>
+<?php
+//        var_dump($this->user);
+foreach ($this->raporty as $key => $val):
+    if($key=='suma'):continue; endif;
+    ?>
+<div class="pytanie">
+    <strong><?php echo $val['pytanie'] ?></strong>
+</div>
+<div class="odpowiedziano">
+    <strong>Odpowiedzi: </strong> <br>
+    <?php  foreach ($val['odpowiedziano'] as $key1 => $odp): ?>
+    <?php echo $odp ?><br>
+    <?php endforeach ?>
+</div>
+<div class="punkty">
+    <strong>Punkty</strong>
+    <?php echo $val['punkty']; ?>
+</div>
+<?php endforeach ?>
+
+<div class="suma">Suma: <?php echo $this->raporty['podsumowanie']['suma'] ?></div>
+<div class="suma">Minimalna liczba punktów do zdania egzaminu: <?php  echo $this->egzamin['min_points'];?></div>
+<?php if ($this->raporty['podsumowanie']['suma'] >= $this->egzamin['min_points']): ?>
+<div class="suma"> Wynik: Zaliczono</div>
+<?php else: ?>
+<div class="suma" style="color: red;">Wynik: Nie zaliczono</div>
+<?php endif ?>
